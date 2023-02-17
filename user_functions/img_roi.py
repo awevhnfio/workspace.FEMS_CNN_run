@@ -14,10 +14,10 @@ def roi(image, start=(500,100), roi_size=(480,480)):
 def roi_v2(frame, start, roi_size):
     (x, y), (w, h) = start, roi_size
     src = frame[y: y + h, x: x + w]
-    # img_blur = cv2.blur(src, ksize=(4,4), anchor=None, borderType=None)
-    # img_gap = src - img_blur
-    # img_sharp = src + img_gap
-    return src
+    img_blur = cv2.blur(src, ksize=(4,4), anchor=None, borderType=None)
+    img_gap = src - img_blur
+    img_sharp = src + img_gap
+    return contra2(img_sharp)
 
 
 def contra2(src):
@@ -34,8 +34,7 @@ def pre_CAM01(frame):
 
 
 def pre_CAM02(frame):
-    roi_image = roi_v2(frame, start=(110,480-330), roi_size=(330, 330))
+    roi_image = roi_v2(frame, start=(520, 480-224), roi_size=(224, 224))
     prepro_image = cv2.resize(roi_image, dsize=(224, 224), interpolation=cv2.INTER_AREA) / 255
-    # 224 이므로 resize 생략
     preprocessed_frame = prepro_image.reshape(1, 224, 224, 3)
     return preprocessed_frame

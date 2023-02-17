@@ -4,3 +4,4 @@
 model/
 *.log
 *.h5
+_old/

@@ -5,3 +5,4 @@ model/
 *.log
 *.h5
 _old/
+user_functions/__pycache__
